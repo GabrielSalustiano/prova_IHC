@@ -1,191 +1,760 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ford vs Ferrari</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ford vs Ferrari</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+        color: white;
+      }
 
-  <div class="container vh-100 d-flex justify-content-center align-items-center collapse show" id="loginScreen">
-    <div class="card p-4" style="max-width: 400px; width: 100%;">
-      <h2 class="text-center mb-4">Login</h2>
-      <form action="#mainContent" data-bs-toggle="collapse" data-bs-target="#mainContent, #loginScreen">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" required>
-        </div>
-        <div class="mb-3">
-          <label for="senha" class="form-label">Senha</label>
-          <input type="password" class="form-control" id="senha" required>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Entrar</button>
-      </form>
-    </div>
-  </div>
+      .navbar-brand {
+        font-weight: bold;
+        background: linear-gradient(45deg, #68a8cb, #d03f2a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
+      .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="road" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23333"/><stop offset="100%" stop-color="%23111"/></linearGradient></defs><rect width="1200" height="600" fill="url(%23road)"/><path d="M0,300 Q300,200 600,300 T1200,300" stroke="%23555" stroke-width="4" fill="none"/><circle cx="200" cy="250" r="8" fill="%2368a8cb" opacity="0.8"/><circle cx="1000" cy="350" r="8" fill="%23d03f2a" opacity="0.8"/></svg>')
+            center/cover;
+        padding: 4rem 0;
+        text-align: center;
+      }
 
-  <div class="collapse" id="mainContent">
+      .title-ford {
+        color: #68a8cb;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      .title-ferrari {
+        color: #d03f2a;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .section-header {
+        border-left: 4px solid #68a8cb;
+        padding-left: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-tabs .nav-link {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        margin-right: 0.5rem;
+      }
+
+      .nav-tabs .nav-link.active {
+        background: linear-gradient(45deg, #68a8cb, #d03f2a);
+        border-color: transparent;
+        color: white;
+      }
+
+      .tab-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 0 0.375rem 0.375rem 0.375rem;
+      }
+
+      .accordion-item {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin-bottom: 0.5rem;
+        border-radius: 0.375rem;
+      }
+
+      .accordion-button {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+      }
+
+      .accordion-button:not(.collapsed) {
+        background: linear-gradient(45deg, #68a8cb, #d03f2a);
+        color: white;
+      }
+
+      .list-group-item {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        margin-bottom: 0.5rem;
+        border-radius: 0.375rem;
+        transition: all 0.3s ease;
+      }
+
+      .list-group-item:hover {
+        background: linear-gradient(45deg, #68a8cb, #d03f2a);
+        transform: translateX(10px);
+      }
+
+      .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+        border-radius: 0.375rem;
+      }
+
+      .logout-btn {
+        background: linear-gradient(45deg, #d03f2a, #68a8cb);
+        border: none;
+        transition: transform 0.2s;
+      }
+
+      .logout-btn:hover {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <a class="navbar-brand fs-4" href="#">
+          <i class="fas fa-car me-2"></i>
+          FORD v FERRARI
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#titulo">Sinopse</a></li>
-            <li class="nav-item"><a class="nav-link" href="#elenco">Elenco</a></li>
-            <li class="nav-item"><a class="nav-link" href="#personagens">Personagens</a></li>
-            <li class="nav-item"><a class="nav-link" href="#curiosidades">Curiosidades</a></li>
-            <li class="nav-item"><a class="nav-link" href="#galeria">Galeria</a></li>
-            <li class="nav-item"><a class="nav-link" href="#trilha">Trilha Sonora</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#titulo">
+                <i class="fas fa-home me-1"></i>Início
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#sinopse">
+                <i class="fas fa-book me-1"></i>Sinopse
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#elenco">
+                <i class="fas fa-users me-1"></i>Elenco
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#personagens">
+                <i class="fas fa-user-friends me-1"></i>Personagens
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#curiosidades">
+                <i class="fas fa-lightbulb me-1"></i>Curiosidades
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#galeria">
+                <i class="fas fa-images me-1"></i>Galeria
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#trilha">
+                <i class="fas fa-music me-1"></i>Trilha Sonora
+              </a>
+            </li>
+            <li class="nav-item">
+              <button
+                class="btn btn-outline-danger btn-sm logout-btn ms-2"
+                onclick="logout()"
+              >
+                <i class="fas fa-sign-out-alt me-1"></i>Sair
+              </button>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
-  <div class="text-center mb-5">
-  <section id="titulo">
-    <h1 class="display-2 fw-bold">
-      <span style="color: #68a8cb;">FORD</span> v <span style="color: #d03f2a;">FERRARI</span>
-    </h1>
-    <img src="assets/gt40-2.jpg" class="img-fluid mt-3" alt="Poster Ford vs Ferrari" style="max-width: 600px;">
-  </section>
-  </div>
-
+    <!-- Hero Section -->
+    <section id="titulo" class="hero-section">
+      <div class="container">
+        <h1 class="display-2 fw-bold mb-4">
+          <span class="title-ford">FORD</span>
+          <span class="text-white">v</span>
+          <span class="title-ferrari">FERRARI</span>
+        </h1>
+        <p class="lead fs-4 mb-4">A batalha épica nas pistas de Le Mans</p>
+        <img
+          src="assets/gt40-2.jpg"
+          class="img-fluid rounded shadow-lg"
+          alt="Poster Ford vs Ferrari"
+          style="max-width: 600px; width: 100%"
+        />
+        <div class="mt-4">
+          <button
+            class="btn btn-primary btn-lg me-3"
+            data-bs-toggle="modal"
+            data-bs-target="#trailerModal"
+          >
+            <i class="fas fa-play me-2"></i>Assistir Trailer
+          </button>
+          <a href="#sinopse" class="btn btn-outline-light btn-lg">
+            <i class="fas fa-arrow-down me-2"></i>Descobrir Mais
+          </a>
+        </div>
+      </div>
+    </section>
 
     <div class="container mt-5">
-
-      <section id="sinopse">
-        <h2>Sinopse</h2>
-        <p>"Ford v Ferrari" tells the real-life story of Carroll Shelby, an American car designer, and Ken Miles, a British race car driver,
-          who are tasked by the Ford Motor Company to build a revolutionary race car. 
-          The goal is to beat the Ferrari team, which had a dominant track record, in the 1966 24 Hours of Le Mans endurance race. They face challenges from corporate interference,
-          the laws of physics, and their own personal struggles to achieve this ambitious goal.</p>
+      <!-- Sinopse -->
+      <section id="sinopse" class="mb-5">
+        <div class="section-header">
+          <h2><i class="fas fa-book me-2"></i>Sinopse</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <p class="fs-5 lh-lg">
+              "Ford v Ferrari" conta a história real de Carroll Shelby, um
+              designer americano de carros, e Ken Miles, um piloto britânico de
+              carros de corrida, que são contratados pela Ford Motor Company
+              para construir um carro de corrida revolucionário.
+            </p>
+            <p class="fs-5 lh-lg">
+              O objetivo é vencer a equipe Ferrari, que tinha um histórico
+              dominante, na corrida de resistência 24 Horas de Le Mans de 1966.
+              Eles enfrentam desafios da interferência corporativa, das leis da
+              física e de suas próprias lutas pessoais para alcançar esse
+              objetivo ambicioso.
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <div class="card p-3">
+              <h5><i class="fas fa-info-circle me-2"></i>Informações</h5>
+              <p><strong>Diretor:</strong> James Mangold</p>
+              <p><strong>Ano:</strong> 2019</p>
+              <p><strong>Duração:</strong> 152 minutos</p>
+              <p><strong>Gênero:</strong> Drama, Ação, Biografia</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-
-      <section id="elenco" class="mt-5">
-        <h2>Elenco</h2>
+      <!-- Elenco -->
+      <section id="elenco" class="mb-5">
+        <div class="section-header">
+          <h2><i class="fas fa-users me-2"></i>Elenco</h2>
+        </div>
         <ul class="nav nav-tabs" id="elencoTabs">
-          <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#bale">Christian Bale</a></li>
-          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#damon">Matt Damon</a></li>
-          <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#remo">Remo Girone</a></li>
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#bale">
+              <i class="fas fa-user me-1"></i>Christian Bale
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#damon">
+              <i class="fas fa-user me-1"></i>Matt Damon
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#remo">
+              <i class="fas fa-user me-1"></i>Remo Girone
+            </a>
+          </li>
         </ul>
-        <div class="tab-content p-3 border border-top-0">
+        <div class="tab-content p-4">
           <div class="tab-pane fade show active" id="bale">
-            <p>Christian Bale plays Ken Miles, a brilliant yet headstrong British race car driver known for his unmatched skills and fierce passion for racing.</p>
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <i class="fas fa-user-circle fa-5x text-primary"></i>
+              </div>
+              <div class="col-md-9">
+                <h4>Christian Bale como Ken Miles</h4>
+                <p class="fs-5">
+                  Christian Bale interpreta Ken Miles, um piloto britânico
+                  brilhante, mas teimoso, conhecido por suas habilidades
+                  incomparáveis e paixão feroz pelas corridas.
+                </p>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade" id="damon">
-            <p>Matt Damon portrays Carroll Shelby, a legendary American automotive designer and former racing driver recruited by Ford to lead their Le Mans campaign.</p>
-
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <i class="fas fa-user-circle fa-5x text-danger"></i>
+              </div>
+              <div class="col-md-9">
+                <h4>Matt Damon como Carroll Shelby</h4>
+                <p class="fs-5">
+                  Matt Damon retrata Carroll Shelby, um lendário designer
+                  automotivo americano e ex-piloto de corrida recrutado pela
+                  Ford para liderar sua campanha em Le Mans.
+                </p>
+              </div>
+            </div>
           </div>
           <div class="tab-pane fade" id="remo">
-            <p>Remo Girone plays Enzo Ferrari, the iconic founder of Scuderia Ferrari and a towering figure in motorsport history.</p>
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <i class="fas fa-user-circle fa-5x text-warning"></i>
+              </div>
+              <div class="col-md-9">
+                <h4>Remo Girone como Enzo Ferrari</h4>
+                <p class="fs-5">
+                  Remo Girone interpreta Enzo Ferrari, o fundador icônico da
+                  Scuderia Ferrari e uma figura imponente na história do
+                  automobilismo.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="personagens" class="mt-5">
-        <h2>Personagens</h2>
+      <!-- Personagens -->
+      <section id="personagens" class="mb-5">
+        <div class="section-header">
+          <h2><i class="fas fa-user-friends me-2"></i>Personagens</h2>
+        </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
-            <div class="card">
-              <img src="/assets/kenmiles.jpg" class="card-img-top" alt="Ken Miles">
+            <div class="card h-100">
+              <img
+                src="/assets/kenmiles.jpg"
+                class="card-img-top"
+                alt="Ken Miles"
+                style="height: 250px; object-fit: cover"
+              />
               <div class="card-body">
                 <h5 class="card-title">Ken Miles</h5>
-                <p class="card-text"></p>
+                <p class="card-text">
+                  Piloto britânico talentoso e determinado, conhecido por sua
+                  personalidade forte e habilidades excepcionais nas pistas.
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="card">
-              <img src="/assets/carrol.jpg" class="card-img-top" alt="Carroll Shelby">              
+            <div class="card h-100">
+              <img
+                src="/assets/carrol.jpg"
+                class="card-img-top"
+                alt="Carroll Shelby"
+                style="height: 250px; object-fit: cover"
+              />
               <div class="card-body">
                 <h5 class="card-title">Carroll Shelby</h5>
-                <p class="card-text"></p>
+                <p class="card-text">
+                  Designer e ex-piloto americano, responsável por criar alguns
+                  dos carros mais icônicos da história do automobilismo.
+                </p>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="card">
-              <img src="/assets/enzo.png" class="card-img-top" alt="Enzo Ferrari">
+            <div class="card h-100">
+              <img
+                src="/assets/enzo.png"
+                class="card-img-top"
+                alt="Enzo Ferrari"
+                style="height: 250px; object-fit: cover"
+              />
               <div class="card-body">
                 <h5 class="card-title">Enzo Ferrari</h5>
-                <p class="card-text"></p>
+                <p class="card-text">
+                  Fundador lendário da Ferrari, uma das personalidades mais
+                  influentes no mundo das corridas automobilísticas.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-
-      <section id="curiosidades" class="mt-5">
-        <h2>Curiosidades</h2>
+      <!-- Curiosidades -->
+      <section id="curiosidades" class="mb-5">
+        <div class="section-header">
+          <h2><i class="fas fa-lightbulb me-2"></i>Curiosidades</h2>
+        </div>
         <div class="accordion" id="curiosidadesAccordion">
           <div class="accordion-item">
             <h2 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#curiosidade1">
-                Le Mans 1966
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#curiosidade1"
+              >
+                <i class="fas fa-trophy me-2"></i>Le Mans 1966
               </button>
             </h2>
             <div id="curiosidade1" class="accordion-collapse collapse show">
-              <div class="accordion-body">A corrida foi uma das mais emocionantes da história, marcada pela dominância da Ford, com seus 3 carros atravessando a linha de chegada juntos.</div>
+              <div class="accordion-body">
+                <p>
+                  A corrida de 1966 foi uma das mais emocionantes da história de
+                  Le Mans. A Ford conseguiu uma vitória histórica com seus três
+                  GT40 cruzando a linha de chegada praticamente juntos,
+                  quebrando a hegemonia da Ferrari na competição.
+                </p>
+                <p>
+                  Esta vitória marcou o início de uma nova era no automobilismo,
+                  provando que a engenharia americana poderia competir e vencer
+                  no cenário europeu.
+                </p>
+              </div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#curiosidade2">
-                O GT40
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#curiosidade2"
+              >
+                <i class="fas fa-car me-2"></i>O Ford GT40
               </button>
             </h2>
             <div id="curiosidade2" class="accordion-collapse collapse">
-              <div class="accordion-body">O Ford GT40 foi criado especialmente para vencer a Ferrari nas pistas europeias.</div>
+              <div class="accordion-body">
+                <p>
+                  O Ford GT40 foi desenvolvido especificamente para vencer a
+                  Ferrari em Le Mans. O nome "GT40" vem de sua altura de apenas
+                  40 polegadas (aproximadamente 1 metro), tornando-o
+                  extremamente aerodinâmico.
+                </p>
+                <p>
+                  O carro se tornou uma lenda do automobilismo, vencendo Le Mans
+                  quatro vezes consecutivas (1966-1969).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#curiosidade3"
+              >
+                <i class="fas fa-film me-2"></i>Produção do Filme
+              </button>
+            </h2>
+            <div id="curiosidade3" class="accordion-collapse collapse">
+              <div class="accordion-body">
+                <p>
+                  O filme utilizou carros GT40 reais durante as filmagens, além
+                  de réplicas meticulosamente construídas. Christian Bale e Matt
+                  Damon passaram meses treinando para dirigir os carros de
+                  corrida.
+                </p>
+                <p>
+                  Muitas das cenas de corrida foram filmadas em pistas reais,
+                  incluindo algumas sequências no próprio circuito de Le Mans na
+                  França.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-
-      <section id="galeria" class="mt-5">
-        <h2>Galeria de Imagens</h2>
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <!-- Galeria -->
+      <section id="galeria" class="mb-5">
+        <div class="section-header">
+          <h2><i class="fas fa-images me-2"></i>Galeria de Imagens</h2>
+        </div>
+        <div
+          id="carouselExample"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide-to="0"
+              class="active"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide-to="1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide-to="2"
+            ></button>
+          </div>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="/assets/gt40.jpg" class="d-block w-100" alt="GT40">
+              <img src="/assets/gt40.jpg" class="d-block w-100" alt="GT40" />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Ford GT40</h5>
+                <p>O lendário carro que conquistou Le Mans</p>
+              </div>
             </div>
             <div class="carousel-item">
-              <img src="/assets/fvf.jpeg" class="d-block w-100" alt="Poster do filme">
+              <img
+                src="/assets/fvf.jpeg"
+                class="d-block w-100"
+                alt="Poster do filme"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Ford v Ferrari</h5>
+                <p>O poster oficial do filme épico</p>
+              </div>
             </div>
             <div class="carousel-item">
-              <img src="/assets/ford-gt40.gif" class="d-block w-100" alt="Cena do filme">
+              <img
+                src="/assets/ford-gt40.gif"
+                class="d-block w-100"
+                alt="Cena do filme"
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Cenas do Filme</h5>
+                <p>Momentos emocionantes das corridas</p>
+              </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev"
+          >
             <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Anterior</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next"
+          >
             <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Próximo</span>
           </button>
         </div>
       </section>
 
-
-      <section id="trilha" class="mt-5 mb-5">
-        <h2>Trilha Sonora</h2>
-        <ul class="list-group">
-          <li class="list-group-item">Le Mans 66 - 	Marco Beltrami</li>
-          <li class="list-group-item">Polk Salad Annie - Tony Joe White</li>
-          <li class="list-group-item">I Put a Spell on You - Nina Simone</li>
-          <li class="list-group-item">Gimme Shelter - The Rolling Stones</li>
-          
-        </ul>
+      <!-- Trilha Sonora -->
+      <section id="trilha" class="mb-5">
+        <div class="section-header">
+          <h2><i class="fas fa-music me-2"></i>Trilha Sonora</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <ul class="list-group list-group-flush">
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-music me-2"></i>
+                  <strong>Le Mans 66</strong> - Marco Beltrami
+                </div>
+                <span class="badge bg-primary rounded-pill"
+                  >Tema Principal</span
+                >
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-music me-2"></i>
+                  <strong>Polk Salad Annie</strong> - Tony Joe White
+                </div>
+                <span class="badge bg-secondary rounded-pill">Clássico</span>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-music me-2"></i>
+                  <strong>I Put a Spell on You</strong> - Nina Simone
+                </div>
+                <span class="badge bg-info rounded-pill">Jazz</span>
+              </li>
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center"
+              >
+                <div>
+                  <i class="fas fa-music me-2"></i>
+                  <strong>Gimme Shelter</strong> - The Rolling Stones
+                </div>
+                <span class="badge bg-warning rounded-pill">Rock</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <div class="card p-3">
+              <h5><i class="fas fa-headphones me-2"></i>Sobre a Trilha</h5>
+              <p>
+                A trilha sonora combina composições originais de Marco Beltrami
+                com clássicos que capturam perfeitamente o espírito dos anos 60
+                e a adrenalina das corridas.
+              </p>
+              <button
+                class="btn btn-outline-primary"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#playlistOffcanvas"
+              >
+                <i class="fas fa-list me-2"></i>Ver Playlist Completa
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <!-- Modal para Trailer -->
+    <div class="modal fade" id="trailerModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark">
+          <div class="modal-header border-0">
+            <h5 class="modal-title text-white">
+              <i class="fas fa-play me-2"></i>Trailer - Ford v Ferrari
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="ratio ratio-16x9">
+              <div
+                class="d-flex align-items-center justify-content-center bg-secondary"
+              >
+                <div class="text-center">
+                  <i class="fas fa-play-circle fa-5x text-white mb-3"></i>
+                  <p class="text-white">Trailer do filme Ford v Ferrari</p>
+                  <p class="text-muted small">
+                    Vídeo indisponível nesta demonstração
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Offcanvas para Playlist -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="playlistOffcanvas">
+      <div class="offcanvas-header bg-dark text-white">
+        <h5 class="offcanvas-title">
+          <i class="fas fa-music me-2"></i>Playlist Completa
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body bg-dark text-white">
+        <div class="list-group list-group-flush">
+          <div class="list-group-item bg-dark text-white">
+            <strong>1. Le Mans 66</strong><br />
+            <small class="text-muted">Marco Beltrami - 3:45</small>
+          </div>
+          <div class="list-group-item bg-dark text-white">
+            <strong>2. Polk Salad Annie</strong><br />
+            <small class="text-muted">Tony Joe White - 4:12</small>
+          </div>
+          <div class="list-group-item bg-dark text-white">
+            <strong>3. I Put a Spell on You</strong><br />
+            <small class="text-muted">Nina Simone - 2:38</small>
+          </div>
+          <div class="list-group-item bg-dark text-white">
+            <strong>4. Gimme Shelter</strong><br />
+            <small class="text-muted">The Rolling Stones - 4:31</small>
+          </div>
+          <div class="list-group-item bg-dark text-white">
+            <strong>5. Ford v Ferrari</strong><br />
+            <small class="text-muted">Marco Beltrami - 2:55</small>
+          </div>
+          <div class="list-group-item bg-dark text-white">
+            <strong>6. The Test</strong><br />
+            <small class="text-muted">Marco Beltrami - 3:22</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function logout() {
+        if (confirm("Tem certeza que deseja sair?")) {
+          window.location.href = "login.html";
+        }
+      }
+
+      // Smooth scrolling para âncoras
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Highlight active nav item on scroll
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(
+          '.navbar-nav .nav-link[href^="#"]'
+        );
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === "#" + current) {
+            link.classList.add("active");
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
