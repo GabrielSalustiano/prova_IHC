@@ -115,9 +115,11 @@
       }
 
       .carousel-item img {
-        height: 400px;
-        object-fit: cover;
+        max-height: 500px;
+        width: auto;
+        object-fit: contain;
         border-radius: 0.375rem;
+        margin: 0 auto;
       }
 
       .logout-btn {
@@ -235,13 +237,6 @@
           style="max-width: 600px; width: 100%"
         />
         <div class="mt-4">
-          <button
-            class="btn btn-primary btn-lg me-3"
-            data-bs-toggle="modal"
-            data-bs-target="#trailerModal"
-          >
-            <i class="fas fa-play me-2"></i>Assistir Trailer
-          </button>
           <a href="#sinopse" class="btn btn-outline-light btn-lg">
             <i class="fas fa-arrow-down me-2"></i>Descobrir Mais
           </a>
@@ -665,39 +660,6 @@
           </div>
         </div>
       </section>
-    </div>
-
-    <!-- Modal para Trailer -->
-    <div class="modal fade" id="trailerModal" tabindex="-1">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content bg-dark">
-          <div class="modal-header border-0">
-            <h5 class="modal-title text-white">
-              <i class="fas fa-play me-2"></i>Trailer - Ford v Ferrari
-            </h5>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="ratio ratio-16x9">
-              <div
-                class="d-flex align-items-center justify-content-center bg-secondary"
-              >
-                <div class="text-center">
-                  <i class="fas fa-play-circle fa-5x text-white mb-3"></i>
-                  <p class="text-white">Trailer do filme Ford v Ferrari</p>
-                  <p class="text-muted small">
-                    Vídeo indisponível nesta demonstração
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- Offcanvas para Playlist -->
