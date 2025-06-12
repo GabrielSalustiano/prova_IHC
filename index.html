@@ -132,6 +132,22 @@
           font-size: 2.5rem;
         }
       }
+
+      .card-body,
+      .card-title,
+      .card-text,
+      .carousel-caption,
+      .carousel-caption h5,
+      .carousel-caption p,
+      .section-header h2,
+      .accordion-body p {
+        color: white;
+      }
+
+      .card,
+      .card * {
+        color: white !important;
+      }
     </style>
   </head>
   <body>
@@ -271,17 +287,32 @@
         </div>
         <ul class="nav nav-tabs" id="elencoTabs">
           <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#bale">
+            <a
+              class="nav-link active"
+              data-bs-toggle="tab"
+              data-bs-target="#bale"
+              role="tab"
+            >
               <i class="fas fa-user me-1"></i>Christian Bale
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#damon">
+            <a
+              class="nav-link"
+              data-bs-toggle="tab"
+              data-bs-target="#damon"
+              role="tab"
+            >
               <i class="fas fa-user me-1"></i>Matt Damon
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#remo">
+            <a
+              class="nav-link"
+              data-bs-toggle="tab"
+              data-bs-target="#remo"
+              role="tab"
+            >
               <i class="fas fa-user me-1"></i>Remo Girone
             </a>
           </li>
@@ -528,7 +559,7 @@
               />
               <div class="carousel-caption d-none d-md-block">
                 <h5>Ford v Ferrari</h5>
-                <p>O poster oficial do filme épico</p>
+                <p>Poster do filme</p>
               </div>
             </div>
             <div class="carousel-item">
@@ -539,7 +570,7 @@
               />
               <div class="carousel-caption d-none d-md-block">
                 <h5>Cenas do Filme</h5>
-                <p>Momentos emocionantes das corridas</p>
+                <p>Corrida em Daytona</p>
               </div>
             </div>
           </div>
